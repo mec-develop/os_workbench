@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Streamlit
+.streamlit/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+
+# Data (OPTIONAL — decide this)
+# If you want CSVs tracked → leave this commented
+# If not → uncomment
+# data/*.csv
