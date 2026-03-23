@@ -1,0 +1,49 @@
+activity_id,activity_name,layer_name,owner,ooo,effort,time,complexity,risk,story_points
+1,Define outcomes,Behavior Layer (Policy & Alignment Layer),Sam,1,Minimum,A few hours,Low,Low,2
+2,Define users,Behavior Layer (Policy & Alignment Layer),Sam,2,Mild,A day,Low,Low,3
+3,Define constraints (problem),Behavior Layer (Policy & Alignment Layer),Sam,3,Mild,A day,Low,Moderate,3
+4,Define success criteria,Behavior Layer (Policy & Alignment Layer),Sam,4,Mild,A day,Medium,Moderate,5
+5,Break system into layers and components,Model Layer (Intelligence Substrate),Sam,5,Moderate,Few days,Medium,Moderate,5
+6,Define boundaries and responsibilities,Model Layer (Intelligence Substrate),Sam,6,Moderate,Few days,Medium,Moderate,5
+7,Define objectives,Behavior Layer (Policy & Alignment Layer),Sam,7,Moderate,Few days,Medium,Moderate,5
+8,Define policies,Behavior Layer (Policy & Alignment Layer),Sam,8,Moderate,Few days,Medium,Moderate,5
+9,Define reasoning style,Behavior Layer (Policy & Alignment Layer),Sam,9,Moderate,Few days,Medium,Moderate,5
+10,Define constraints (behavioral),Behavior Layer (Policy & Alignment Layer),Sam,10,Moderate,Few days,Medium,Moderate,5
+11,Map required models,Model Layer (Intelligence Substrate),Sam,11,Moderate,Few days,Medium,Moderate,5
+12,Map required data,Data Layer,Sam,12,Moderate,Few days,Medium,Moderate,5
+13,Map required tools,Tooling / Integration Layer,Sam,13,Moderate,Few days,Medium,Moderate,5
+14,Map required memory,Context / Memory Layer,Sam,14,Moderate,Few days,Medium,Moderate,5
+15,Identify gaps,Model Layer (Intelligence Substrate),Sam,15,Moderate,Few days,Medium,High,5
+16,Identify dependencies,Orchestration Layer (Agent & Execution Layer),Sam,16,Moderate,Few days,Medium,High,5
+17,Define interaction flows,Orchestration Layer (Agent & Execution Layer),Sam,17,Moderate,Few days,Medium,Moderate,5
+18,Define input structures,Interface (UX / Experience) Layer,Sam,18,Moderate,Few days,Medium,Moderate,5
+19,Define output structures,Interface (UX / Experience) Layer,Sam,18,Moderate,Few days,Medium,Moderate,5
+20,Define user touchpoints,Interface (UX / Experience) Layer,Sam,19,Moderate,Few days,Medium,Moderate,5
+21,Define system touchpoints,Tooling / Integration Layer,Sam,19,Moderate,Few days,Medium,Moderate,5
+22,Define metrics,Evaluation / Feedback Layer,Sam,20,Moderate,Few days,Medium,Moderate,5
+23,Define test cases,Evaluation / Feedback Layer,Sam,21,Moderate,Few days,Medium,Moderate,5
+24,Define feedback mechanisms,Evaluation / Feedback Layer,Sam,22,Moderate,Few days,Medium,Moderate,5
+25,Provision runtime,Infrastructure Layer,Marti,23,Moderate,Few days,Medium,Moderate,5
+26,Provision access,Infrastructure Layer,Marti,24,Moderate,Few days,Medium,Moderate,5
+27,Provision pipelines,Infrastructure Layer,Marti,25,Moderate,Few days,Medium,Moderate,5
+28,Select models,Model Layer (Intelligence Substrate),Sam,26,Moderate,Few days,Medium,Moderate,5
+29,Configure models,Model Layer (Intelligence Substrate),Marti,27,Moderate,Few days,Medium,Moderate,5
+30,Connect models,Model Layer (Intelligence Substrate),Marti,28,Moderate,Few days,Medium,Moderate,5
+31,Encode prompts,Behavior Layer (Policy & Alignment Layer),Sam,29,Moderate,Few days,Medium,Moderate,5
+32,Encode policies,Behavior Layer (Policy & Alignment Layer),Sam,30,Moderate,Few days,Medium,Moderate,5
+33,Encode constraints (runtime),Behavior Layer (Policy & Alignment Layer),Sam,31,Moderate,Few days,Medium,Moderate,5
+34,Build workflows,Orchestration Layer (Agent & Execution Layer),Sam,32,Moderate,Few days,Medium,Moderate,5
+35,Build agents,Orchestration Layer (Agent & Execution Layer),Sam,33,Moderate,Few days,Medium,Moderate,5
+36,Build tool usage logic,Tooling / Integration Layer,Sam,34,Moderate,Few days,Medium,Moderate,5
+37,Implement retrieval systems,Context / Memory Layer,Marti,35,Moderate,Few days,Medium,Moderate,5
+38,Implement storage,Data Layer,Marti,36,Moderate,Few days,Medium,Moderate,5
+39,Implement pipelines,Infrastructure Layer,Marti,37,Moderate,Few days,Medium,Moderate,5
+40,Connect APIs,Tooling / Integration Layer,Marti,38,Moderate,Few days,Medium,Moderate,5
+41,Connect databases,Data Layer,Marti,39,Moderate,Few days,Medium,Moderate,5
+42,Connect external systems,Tooling / Integration Layer,Marti,40,Moderate,Few days,Medium,Moderate,5
+43,Validate functionality,Evaluation / Feedback Layer,Marti,41,Moderate,Few days,Medium,Moderate,5
+44,Validate performance,Evaluation / Feedback Layer,Marti,42,Moderate,Few days,Medium,Moderate,5
+45,Validate edge cases,Evaluation / Feedback Layer,Marti,43,Moderate,Few days,Medium,Moderate,5
+46,Release system,Infrastructure Layer,Marti,44,Moderate,Few days,Medium,Moderate,5
+47,Version system,Infrastructure Layer,Marti,45,Moderate,Few days,Medium,Moderate,5
+48,Activate system,Infrastructure Layer,Marti,46,Moderate,Few days,Medium,Moderate,5

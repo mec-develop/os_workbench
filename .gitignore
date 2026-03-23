@@ -9,8 +9,8 @@ venv/
 # macOS
 .DS_Store
 
-# Streamlit
-.streamlit/
+# Streamlit secrets only
+.streamlit/secrets.toml
 
 # Logs
 *.log
@@ -18,7 +18,5 @@ venv/
 # IDE
 .vscode/
 
-# Data (OPTIONAL — decide this)
-# If you want CSVs tracked → leave this commented
-# If not → uncomment
+# Data (optional)
 # data/*.csv

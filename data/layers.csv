@@ -1,0 +1,11 @@
+layer_id,layer_name,stack_name,display_order
+1,Model Layer (Intelligence Substrate),Cognitive Stack,1
+2,Behavior Layer (Policy & Alignment Layer),Cognitive Stack,2
+3,Orchestration Layer (Agent & Execution Layer),Cognitive Stack,3
+4,Context / Memory Layer,System Stack,1
+5,Tooling / Integration Layer,System Stack,2
+6,Data Layer,System Stack,3
+7,Evaluation / Feedback Layer,System Stack,4
+8,Safety / Governance Layer,System Stack,5
+9,Interface (UX / Experience) Layer,System Stack,6
+10,Infrastructure Layer,System Stack,7
