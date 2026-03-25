@@ -47,7 +47,6 @@ if "selected_activity_id" not in st.session_state:
 if "toast_message" not in st.session_state:
     st.session_state.toast_message = None
 
-# show toast once
 if st.session_state.toast_message:
     st.toast(st.session_state.toast_message)
     st.session_state.toast_message = None
@@ -97,27 +96,6 @@ def calculate_layer_progress(layer_name: str) -> int:
     return int(sum(vals) / len(vals)) if vals else 0
 
 
-def get_color(progress: int) -> str:
-    if progress == 0:
-        return "#E5E7EB"
-    elif progress < 40:
-        return "#FCA5A5"
-    elif progress < 70:
-        return "#FDBA74"
-    elif progress < 100:
-        return "#BBF7D0"
-    else:
-        return "#4CAF50"
-
-
-def get_status_color(status: str) -> str:
-    if status == "Complete":
-        return "#2E7D32"
-    elif status == "In Progress":
-        return "#B45309"
-    return "#6B7280"
-
-
 def get_blocker(activity_row):
     current_progress = calculate_progress(activity_row["activity_id"])
     if current_progress > 0:
@@ -143,16 +121,51 @@ st.title("OS Workbench")
 if st.session_state.current_page == "layers":
     st.header("Layers")
 
-    cols = st.columns(5)
+    layers_list = layers.to_dict("records")
 
-    for i, row in layers.iterrows():
-        progress = calculate_layer_progress(row["layer_name"])
-        with cols[i % 5]:
-            if st.button(
-                f"{row['layer_name']}\n{progress}%",
-                use_container_width=True
-            ):
-                go_to_layer_detail(row["layer_name"])
+    cols_per_row = 5
+    rows = math.ceil(len(layers_list) / cols_per_row)
+
+    for r in range(rows):
+        cols = st.columns(cols_per_row)
+
+        for c in range(cols_per_row):
+            idx = r * cols_per_row + c
+            if idx >= len(layers_list):
+                continue
+
+            layer = layers_list[idx]
+            progress = calculate_layer_progress(layer["layer_name"])
+
+            tile_html = f"""
+            <div style="
+                height:110px;
+                border-radius:12px;
+                background:#F9FAFB;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                text-align:center;
+                font-weight:600;
+                padding:8px;
+                line-height:1.2;
+                border:1px solid #E5E7EB;
+            ">
+                <div>{layer['layer_name']}</div>
+                <div style="margin-top:6px;">{progress}%</div>
+            </div>
+            """
+
+            with cols[c]:
+                if st.button(
+                    " ",
+                    key=f"layer_{layer['layer_id']}",
+                    use_container_width=True
+                ):
+                    go_to_layer_detail(layer["layer_name"])
+
+                st.markdown(tile_html, unsafe_allow_html=True)
 
     st.stop()
 
@@ -195,7 +208,7 @@ if search:
     ]
 
 # =========================
-# TILE GRID
+# ACTIVITIES GRID
 # =========================
 st.subheader("Activities")
 
@@ -213,33 +226,42 @@ for r in range(rows):
             continue
 
         a = acts[idx]
-        progress = calculate_progress(a["activity_id"])
         blocker = get_blocker(a)
+        is_blocked = blocker is not None
 
-        if blocker:
-            color = "#D1D5DB"
-            label = f"{a['activity_name']}\nBlocked by: {blocker}"
-        else:
-            color = get_color(progress)
-            label = f"{a['activity_name']}\n{progress}%"
+        bg_color = "#FEE2E2" if is_blocked else "#F9FAFB"
+        tooltip = f"Blocked by: {blocker}" if is_blocked else ""
 
-        st.markdown(
-            f"""
-            <style>
-            div[data-testid="stButton"][key="tile_{a['activity_id']}"] button {{
-                background: {color};
-                border-radius: 12px;
-                height: 110px;
-                font-weight: 600;
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
+        tile_html = f'''
+        <div 
+            title="{tooltip}"
+            onclick="window.location.href='?activity={a['activity_id']}'"
+            style="
+                background:{bg_color};
+                border-radius:12px;
+                height:110px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                text-align:center;
+                font-weight:600;
+                padding:10px;
+                line-height:1.2;
+                border:1px solid #E5E7EB;
+                cursor:pointer;
+            "
+        >
+            {a['activity_name']}
+        </div>
+        '''
 
         with cols[c]:
-            if st.button(label, key=f"tile_{a['activity_id']}", use_container_width=True):
-                st.session_state.selected_activity_id = a["activity_id"]
+            st.markdown(tile_html, unsafe_allow_html=True)
+
+# handle click via query param
+params = st.query_params
+if "activity" in params:
+    st.session_state.selected_activity_id = int(params["activity"])
 
 # =========================
 # DETAILS
@@ -283,15 +305,11 @@ if aid:
         st.caption("Points")
         st.markdown(f"### {act['story_points']}")
 
-    # =========================
-    # EXECUTION STEPS
-    # =========================
     st.subheader("Execution Steps")
 
     rows_df = activity_details[activity_details["activity_id"] == aid]
 
     for _, row in rows_df.iterrows():
-
         cols = st.columns([2, 4, 4, 3, 2])
 
         cols[0].write(row["criteria_category"])
