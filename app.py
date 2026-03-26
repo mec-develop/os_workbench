@@ -26,6 +26,17 @@ def load_data():
 
 layers, activities, activity_details = load_data()
 
+
+def clean_text(df):
+    return df.applymap(
+        lambda x: x.encode("latin1").decode("utf-8") if isinstance(x, str) else x
+    )
+
+
+layers = clean_text(layers)
+activities = clean_text(activities)
+activity_details = clean_text(activity_details)
+
 # =========================
 # SESSION STATE
 # =========================
@@ -198,7 +209,17 @@ elif st.session_state.page == "activities":
 
         edit = st.toggle("Update Locations and Paths", key=f"edit_{aid}")
 
-        rows_df = activity_details[activity_details["activity_id"] == aid]
+        order_map = {
+            "Definition": 1,
+            "Structure": 2,
+            "Implementation": 3,
+            "Validation": 4,
+            "Traceability": 5,
+        }
+
+        rows_df = activity_details[activity_details["activity_id"] == aid].copy()
+        rows_df["order"] = rows_df["criteria_category"].map(order_map)
+        rows_df = rows_df.sort_values("order")
 
         for _, row in rows_df.iterrows():
             c1, c2, c3, c4, c5 = st.columns(5)
